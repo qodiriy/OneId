@@ -10,7 +10,7 @@ android {
         minSdk 16
         targetSdk 31
 
-        buildConfigField "String", "API_URL", "\"https://mrz-api.egov.uz/\""
+        buildConfigField "String", "API_URL", "\"http://172.16.60.8:8998/\""
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"

@@ -1,4 +1,3 @@
 package uz.oneid.sdk.base
 
-open class BaseRepository {
-}
+open class BaseRepository

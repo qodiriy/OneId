@@ -10,8 +10,6 @@ import uz.oneid.sdk.base.UserModel
 
 class AuthViewModel(private val repository: AuthRepository) : BaseViewModel() {
 
-    private val _data = MutableLiveData<UserModel>()
-    val data: LiveData<UserModel> = _data
 
     private val _state = MutableLiveData<AuthState>()
     val state: LiveData<AuthState> = _state
@@ -20,17 +18,25 @@ class AuthViewModel(private val repository: AuthRepository) : BaseViewModel() {
 
 
     fun authWithLoginAndPass(
-        login : String, pass : String
-    ) {
+        login: String, pass: String
+    ): LiveData<UserModel> {
+
+        val result = MutableLiveData<UserModel>()
+
         disposable?.dispose()
-        disposable = repository.authWithLoginAndPass(login,pass)
+        disposable = repository.authWithLoginAndPass(login, pass)
+            .flatMap {
+                val token = it.data.accessToken
+                val pinfl = it.data.pinfl
+                repository.getUserFromPinfl("Bearer $token", "$pinfl")
+            }
             .subscribe({
-                when(it.code()){
-                    200 ->{
+                when (it.status?.code) {
+                    0 -> {
                         //_data.postValue(it.body())
                         _state.postValue(AuthState.REGISTERED)
                     }
-                    400 ->{
+                    1 -> {
                         Timber.e("400")
                         _state.postValue(AuthState.NOT_REGISTERED)
                     }
@@ -38,6 +44,9 @@ class AuthViewModel(private val repository: AuthRepository) : BaseViewModel() {
             }, {
 
             })
+
+        return result
+
     }
 
 }

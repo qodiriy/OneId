@@ -3,16 +3,24 @@ package uz.oneid.sdk.auth.model
 import io.reactivex.rxjava3.core.Single
 import retrofit2.Response
 import uz.oneid.sdk.base.BaseRepository
+import uz.oneid.sdk.base.BaseResponse
 
 
 class AuthRepository(private val api: AuthApi) : BaseRepository() {
 
-    fun authWithLoginAndPass(pin: String, document: String): Single<Response<AuthResponse>> {
+    fun authWithLoginAndPass(login: String, password: String): Single<BaseResponse<AuthResponse>> {
         return api.withLoginAndPass(
-            "http://172.16.30.113:8080/api/v2/user/signIn",
             AuthRequest(
-                pin = pin.toLongOrNull()?:0,
-                document = document
+                login = login,
+                password = password
+            )
+        )
+    }
+
+    fun getUserFromPinfl(token: String, pinfl: String): Single<BaseResponse<AuthResponse>> {
+        return api.getUserInfo(
+            UserInfoRequest(
+                pinfl = pinfl
             )
         )
     }
