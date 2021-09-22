@@ -1,5 +1,6 @@
 package uz.oneid.sdk.auth
 
+import android.util.Base64
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.rxjava3.disposables.Disposable
@@ -27,13 +28,19 @@ class AuthViewModel(private val repository: AuthRepository) : BaseViewModel() {
         disposable = repository.authWithLoginAndPass(login, pass)
             .flatMap {
                 val token = it.data.accessToken
-                val pinfl = it.data.pinfl
-                repository.getUserFromPinfl("Bearer $token", "$pinfl")
+                val pinfl = it.data.pinfl ?: ""
+                val pin = pinfl + pinfl.take(4) + pinfl.takeLast(4)
+                Timber.e("Pin : $pin nextline")
+                val hash = pin.toBase64()
+                Timber.e("Hash : $hash nextline")
+                repository.getUserFromPinfl("Bearer $token", hash)
             }
             .subscribe({
                 when (it.status?.code) {
                     0 -> {
-                        //_data.postValue(it.body())
+                        it.data.toUserModel().let { r ->
+                            result.postValue(r)
+                        }
                         _state.postValue(AuthState.REGISTERED)
                     }
                     1 -> {
@@ -47,6 +54,10 @@ class AuthViewModel(private val repository: AuthRepository) : BaseViewModel() {
 
         return result
 
+    }
+
+    private fun String.toBase64(): String {
+        return Base64.encodeToString(this.toByteArray(), Base64.NO_WRAP)
     }
 
 }

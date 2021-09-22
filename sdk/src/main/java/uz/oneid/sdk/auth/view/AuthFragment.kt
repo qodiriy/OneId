@@ -1,14 +1,20 @@
 package uz.oneid.sdk.auth.view
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import uz.oneid.sdk.auth.AuthState
 import uz.oneid.sdk.auth.AuthViewModel
+import uz.oneid.sdk.base.UserModel
 import uz.oneid.sdk.databinding.FragmentAuthBinding
+import kotlin.math.log
 
 
 class AuthFragment : Fragment() {
@@ -63,6 +69,17 @@ class AuthFragment : Fragment() {
 
     private fun tryToAuth(login: String, password: String) {
         val result = viewModel.authWithLoginAndPass(login, password)
+        result.observe(viewLifecycleOwner) {
+            onUser(it)
+        }
+    }
+
+    private fun onUser(user: UserModel) {
+        activity?.setResult(
+            Activity.RESULT_OK,
+            Intent().putExtra("data", bundleOf(Pair("pin", user.pin), Pair("login", user.login)))
+        )
+        activity?.finish()
     }
 
 }

@@ -18,8 +18,8 @@ interface AuthApi {
 
     @POST("/api/v1/secure/getUser")
     fun getUserInfo(
-        @Header("Authorisation") token: String,
+        @Header("Authorization") token: String,
         @Body body: UserInfoRequest
-    ): Single<BaseResponse<AuthResponse>>
+    ): Single<BaseResponse<UserInfoResponse>>
 
 }

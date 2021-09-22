@@ -1,7 +1,8 @@
 package uz.oneid.sdk.base
 
 data class UserModel(
-    val pin: Long? = null,
+    val pin: String? = null,
+    val login : String? = null,
     val document: String? = null,
     val birthDate: String? = null,
     val birthPlaceId: String? = null,
