@@ -1,8 +1,7 @@
 package uz.oneid.sdk
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import uz.oneid.sdk.R
+import androidx.appcompat.app.AppCompatActivity
 
 class OneIDActivity : AppCompatActivity() {
 

@@ -30,7 +30,7 @@ class MainDialogFragment : BaseFragment() {
         }
 
         content.cardViewReg.setOnClickListener {
-
+            findNavController().navigate(R.id.action_fragment_main_to_fragment_reg)
         }
 
     }

@@ -13,8 +13,8 @@
             app:destination="@id/fragment_auth" />
 
         <action
-            android:id="@+id/action_fragment_welcome_to_fragment_auth"
-            app:destination="@id/fragment_auth" />
+            android:id="@+id/action_fragment_main_to_fragment_reg"
+            app:destination="@id/fragment_reg" />
 
     </fragment>
 
@@ -24,6 +24,13 @@
 
 
     </fragment>
+
+    <fragment
+        android:id="@+id/fragment_reg"
+        android:name="uz.oneid.sdk.reg.view.RegFragment">
+
+    </fragment>
+
 
 
 </navigation>

@@ -9,6 +9,7 @@ import org.koin.core.context.unloadKoinModules
 import org.koin.core.logger.Level
 import timber.log.Timber
 import uz.oneid.sdk.auth.AuthModule
+import uz.oneid.sdk.reg.RegModule
 
 
 object OneIDDI {
@@ -17,7 +18,8 @@ object OneIDDI {
 
     private val modules = listOf(
         AppModule.app,
-        AuthModule.auth
+        AuthModule.auth,
+        RegModule.reg
     )
 
     fun start(app: Application) {
