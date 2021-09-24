@@ -44,28 +44,28 @@ class RegFragment : Fragment() {
             val email = content.editTextEmail.text.toString()
             val phone = content.editTextPhone.text.toString()
 
-            viewModel.sendSms(pin,doc, email, phone)
+            viewModel.sendSms(pin, doc, email, phone)
 
         }
 
-        viewModel.state.let {
-
-            it.value?.let { s ->
-                onState(s)
-            }
-
-            it.observe(viewLifecycleOwner) { s ->
-                onState(s)
-            }
-
+        content.buttonCheckSms.setOnClickListener {
+            val pin = content.editTextPin.text.toString()
+            val code = content.editTextCode.text.toString()
+            viewModel.checkSms(pin, code)
         }
 
+        content.buttonSignUp.setOnClickListener {
+            val pin = content.editTextPin.text.toString()
+            val login = content.editTextLogin.text.toString()
+            val password = content.editTextLogin.text.toString()
+            val result = viewModel.signUp(pin,login, password)
+            result.observe(viewLifecycleOwner) {
+                onUser(it)
+            }
+        }
+
+
     }
-
-    private fun onState(state: RegState) {
-
-    }
-
 
     private fun onUser(user: UserModel) {
         activity?.setResult(
@@ -74,5 +74,6 @@ class RegFragment : Fragment() {
         )
         activity?.finish()
     }
+
 
 }
