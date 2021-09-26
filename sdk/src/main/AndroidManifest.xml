@@ -8,7 +8,7 @@
         android:supportsRtl="true">
 
         <activity
-            android:name=".OneIDActivity"
+            android:name=".main.OneIDActivity"
             android:exported="true"/>
 
     </application>

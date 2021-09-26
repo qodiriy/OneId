@@ -6,15 +6,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import uz.oneid.sdk.auth.AuthState
 import uz.oneid.sdk.auth.AuthViewModel
-import uz.oneid.sdk.base.UserModel
 import uz.oneid.sdk.databinding.FragmentAuthBinding
-import kotlin.math.log
+import uz.oneid.sdk.main.User
 
 
 class AuthFragment : Fragment() {
@@ -74,10 +71,11 @@ class AuthFragment : Fragment() {
         }
     }
 
-    private fun onUser(user: UserModel) {
+    private fun onUser(user: User) {
+
         activity?.setResult(
             Activity.RESULT_OK,
-            Intent().putExtra("data", bundleOf(Pair("pin", user.pin), Pair("login", user.login)))
+            Intent().putExtra("data", user)
         )
         activity?.finish()
     }

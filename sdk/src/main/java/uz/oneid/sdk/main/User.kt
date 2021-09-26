@@ -1,6 +1,8 @@
-package uz.oneid.sdk.base
+package uz.oneid.sdk.main
 
-data class UserModel(
+import uz.oneid.sdk.base.BaseModel
+
+data class User(
     val pin: String? = null,
     val login : String? = null,
     val document: String? = null,

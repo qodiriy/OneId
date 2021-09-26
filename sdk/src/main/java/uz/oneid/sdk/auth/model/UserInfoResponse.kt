@@ -1,8 +1,7 @@
 package uz.oneid.sdk.auth.model
 
 import uz.oneid.sdk.base.BaseModel
-import uz.oneid.sdk.base.UserModel
-import kotlin.math.log
+import uz.oneid.sdk.main.User
 
 data class UserInfoResponse(
     val pinfl: String? = null,
@@ -11,8 +10,8 @@ data class UserInfoResponse(
     val passportData: PassportData? = null
 ) : BaseModel() {
 
-    fun toUserModel(): UserModel {
-        return UserModel(
+    fun toUserModel(): User {
+        return User(
             pin = pinfl,
             login = login
         )

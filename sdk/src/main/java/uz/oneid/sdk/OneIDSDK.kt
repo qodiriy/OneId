@@ -7,6 +7,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.appcompat.app.AppCompatActivity
 import timber.log.Timber
+import uz.oneid.sdk.main.OneIDActivity
 
 
 object OneIDSDK {

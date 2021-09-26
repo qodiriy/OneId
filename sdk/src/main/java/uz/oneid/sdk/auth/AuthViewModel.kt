@@ -7,7 +7,7 @@ import io.reactivex.rxjava3.disposables.Disposable
 import timber.log.Timber
 import uz.oneid.sdk.auth.model.AuthRepository
 import uz.oneid.sdk.base.BaseViewModel
-import uz.oneid.sdk.base.UserModel
+import uz.oneid.sdk.main.User
 
 class AuthViewModel(private val repository: AuthRepository) : BaseViewModel() {
 
@@ -17,12 +17,11 @@ class AuthViewModel(private val repository: AuthRepository) : BaseViewModel() {
 
     private var disposable: Disposable? = null
 
-
     fun authWithLoginAndPass(
         login: String, pass: String
-    ): LiveData<UserModel> {
+    ): LiveData<User> {
 
-        val result = MutableLiveData<UserModel>()
+        val result = MutableLiveData<User>()
 
         disposable?.dispose()
         disposable = repository.authWithLoginAndPass(login, pass)

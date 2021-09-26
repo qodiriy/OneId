@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/fragment_auth">
+
+    <fragment
+        android:id="@+id/fragment_auth"
+        android:name="uz.egov.oneid.AuthFragment">
+
+        <action
+            android:id="@+id/action_fragment_auth_to_fragment_info"
+            app:destination="@id/fragment_info" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_info"
+        android:name="uz.egov.oneid.InfoFragment">
+
+
+    </fragment>
+
+
+</navigation>

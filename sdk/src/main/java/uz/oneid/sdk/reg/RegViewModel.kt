@@ -5,9 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.rxjava3.disposables.Disposable
 import timber.log.Timber
-import uz.oneid.sdk.auth.AuthState
 import uz.oneid.sdk.base.BaseViewModel
-import uz.oneid.sdk.base.UserModel
+import uz.oneid.sdk.main.User
 import uz.oneid.sdk.reg.model.RegRepository
 
 class RegViewModel(private val repository: RegRepository) : BaseViewModel() {
@@ -71,9 +70,9 @@ class RegViewModel(private val repository: RegRepository) : BaseViewModel() {
 
     fun signUp(
         pin: String, login: String, password: String
-    ): LiveData<UserModel> {
+    ): LiveData<User> {
 
-        val result = MutableLiveData<UserModel>()
+        val result = MutableLiveData<User>()
 
         disposable?.dispose()
         disposable = repository.signUp(pin, login, password)
