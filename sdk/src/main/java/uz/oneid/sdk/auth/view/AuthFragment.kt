@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import uz.oneid.sdk.R
 import uz.oneid.sdk.auth.AuthState
 import uz.oneid.sdk.auth.AuthViewModel
 import uz.oneid.sdk.databinding.FragmentAuthBinding
@@ -56,6 +58,10 @@ class AuthFragment : Fragment() {
                 }
             }
 
+        }
+
+        content.textViewForget.setOnClickListener {
+            findNavController().navigate(R.id.action_fragment_auth_to_fragment_recover)
         }
 
     }

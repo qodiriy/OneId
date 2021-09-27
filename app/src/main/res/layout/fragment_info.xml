@@ -16,7 +16,8 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="Passport serial number"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/textViewDoc"
@@ -25,7 +26,8 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="Tugulgan kuni"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/textViewBirthday"
@@ -34,12 +36,14 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="Tugulgan joyi"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/textViewBirthPlace"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+       />
 
 
 </LinearLayout>

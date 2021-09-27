@@ -22,12 +22,21 @@
         android:id="@+id/fragment_auth"
         android:name="uz.oneid.sdk.auth.view.AuthFragment">
 
+        <action
+            android:id="@+id/action_fragment_auth_to_fragment_recover"
+            app:destination="@id/fragment_recover" />
 
     </fragment>
 
     <fragment
         android:id="@+id/fragment_reg"
         android:name="uz.oneid.sdk.reg.view.RegFragment">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_recover"
+        android:name="uz.oneid.sdk.recovery.view.RecoveryFragment">
 
     </fragment>
 
